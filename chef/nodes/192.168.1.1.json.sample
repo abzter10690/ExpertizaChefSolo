@@ -1,0 +1,52 @@
+{   
+  "run_list": [
+    "recipe[expertiza]",
+    "recipe[expertiza::expertiza_clone]",
+    "recipe[expertiza::set_java_home]",
+    "recipe[expertiza::mysql]",
+    "recipe[expertiza::database]",
+    "recipe[expertiza::nginx]",
+    "recipe[expertiza::unicorn_conf]",
+    "recipe[expertiza::start_server]"
+  ],
+
+  "group": "root",
+  "port": 22,
+
+  "user": {
+    "name": "root",
+    "password": "password-shadow-hash"
+  },
+  
+  "java": {
+      "java_home":"/usr/lib/jvm/java-6-openjdk-amd64",
+       "set_etc_environment" : true
+  },
+ 
+  "database": {
+	"config":"/home/root/expertiza/config",
+	"scrubbed_sql":"/home/expertiza_scrubbed_2015_08_14.sql",
+	"scrubbed_db" : "expertiza_scrubbed_2015_08_14.sql.tar.gz"
+  },
+
+  "expertiza_clone": {
+	"github":"https://github.com/expertiza/expertiza.git"
+  },
+
+  "nginx": {
+	"default":"/etc/nginx/sites-enabled/default",
+	"default_conf":"/etc/nginx/conf.d/default.conf",
+	"mode":"0755",
+	"default_file":"default.conf.erb"
+  },
+
+  "server": {
+	"expertiza":"/home/root/expertiza"
+  },
+
+  "config": { 
+    "exp_path" : "/home/root/expertiza",
+    "public_path" : "/home/root/expertiza/public"
+  }
+}
+

@@ -1,0 +1,18 @@
+# Set the working application directory
+working_directory '/home/root/expertiza'
+
+# Unicorn PID file location
+pid "/home/root/expertiza/tmp/pids/unicorn.pid"
+
+# Path to logs
+stderr_path "/home/root/expertiza/log/unicorn.log"
+stdout_path "/home/root/expertiza/log/unicorn.log"
+
+# Unicorn socket
+listen "/tmp/unicorn.expertiza.sock"
+
+# Number of processes
+worker_processes 2
+
+# Time-out
+timeout 30
